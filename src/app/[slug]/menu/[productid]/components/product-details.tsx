@@ -34,7 +34,7 @@ const ProductDetails = ({product}: ProductDetailsProps) => {
             <h2 className="mt-1 text-xl font-semibold">{product.name}</h2>
 
             {/* PREÇO E QUANTIDADE */}
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between mt-3">
                 <h3 className="text-xl font-semibold">
                 {formatCurrency(product.price)}
                 </h3>
@@ -63,6 +63,10 @@ const ProductDetails = ({product}: ProductDetailsProps) => {
                 </div>
                 <p className="text-sm text-muted-foreground">{product.description}</p>
             </div>
+            <ul className="list-disc px-5 text-sm text-muted-foreground">
+                {product.ingredients.map((ingredient) => (
+                    <li key={ingredient}>{ingredient}</li>))}
+            </ul>
             </div>
             <Button className="rounded-full w-full mt-32">Adicionar à Sacola</Button>
         </div>
