@@ -22,7 +22,7 @@ const ProductDetails = ({product}: ProductDetailsProps) => {
     });
     const handleIncreaseQuantity = () => setQuantity((prev)=> prev + 1);
     return ( 
-        <div className="relative z-50 mt-[-1.5rem] flex flex-col h-full rounded-t-3xl p-5">
+        <div className="relative z-50 mt-[-1.5rem] flex flex-col h-full rounded-t-3xl p-5 overflow-hidden">
             <div className="flex-auto">
                 {/* RESTAURANTE */}
             <div className="flex .items-center gap-1.5">
