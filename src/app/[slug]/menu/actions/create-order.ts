@@ -17,10 +17,18 @@ interface CreateOrderInput {
     }>;
     
     comsumptionMethod: ComsumptionMethod;
-    restaurantId: string;
+    slug: string;
 }
 
 export const createOrder = async (input: CreateOrderInput) => {
+    const restaurant = await db.restaurant.findUnique({
+        where: {
+            slug: input.slug,
+        }
+    })
+    if (!restaurant) {
+        throw new Error("Restaurant not found");
+    }
     const productsWithPrices = await db.product.findMany({
         where: {
             id: {
@@ -49,7 +57,7 @@ export const createOrder = async (input: CreateOrderInput) => {
                     return acc + product.price * product.quantity;
                 }, 0),
                 comsumptionMethod: input.comsumptionMethod,
-                restaurantId: input.restaurantId,
+                restaurantId: restaurant.id,
             },
         });
 };
